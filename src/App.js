@@ -2,8 +2,9 @@ import Header from './components/Header';
 // // import Button from './components/Button';
 import Criteria from './components/Criteria';
 import ChosenQuestions from './components/ChosenQuestions';
-import { Button, Breadcrumb, Container, Col, Row, Form } from 'react-bootstrap';
+import { Button, Breadcrumb, Container, Col, Row, Form, Dropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 
 function App() {
   return (
@@ -35,10 +36,18 @@ function App() {
           <Col>
           <Form>
             <h3>Specify what's needed in your password:</h3>
-            <Criteria description="Minimum length (e.g. 8, 12)" id="min_len" />
+            {/* <Criteria description="Minimum length (e.g. 8, 12)" id="min_len" /> */}
+            <Form.Group controlId='length'>
+                    <Form.Check type="checkbox" label='Specify length:'></Form.Check>
+                    <Form.Control type='text' placeholder='Ex. 8'/>
+            </Form.Group>
+            <Form.Select>
+                <option value='ge'>Greater than or equal to</option>
+                <option value='fixed'>Fixed</option>
+              </Form.Select>
+            <br/>
             <Criteria description="Include symbols (e.g. @$)" id='incl_sym'/>
             <Criteria description="Include numbers (e.g. 123)" id='incl_num'/>
-            <Criteria description="Include lowercase characters (e.g. abc)" id='incl_low'/>
             <Criteria description="Include uppercase characters (e.g. ABC)" id='incl_upp'/>
             <Criteria description="Exclude ambiguous characters numbers (e.g. {},[])" id='excl_amb'/>
             <Button>Generate Password</Button>
