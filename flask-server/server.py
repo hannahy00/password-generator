@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request, render_template
 # from generator import password_generator_main
 # from generator import test
 import json
+from generator import *
 
 app = Flask(__name__)
 
@@ -20,11 +21,11 @@ def generateJSONList():
     passwordList = {'passwords': []}
 
     for i in range(10):
-        # generated_password = password_generator_main(answer_one, answer_two, answer_three, password_length,
-        #                                                 have_symbols, have_numbers, have_lowercase, have_uppercase,
-        #                                                 have_ambiguous_characters)
-        # print(f"Your password on iteration {i} is: {generated_password}")
-        generated_password = "PEAR^2CAR07^"
+        generated_password = password_generator_main(answer_one, answer_two, answer_three, password_length,
+                                                        have_symbols, have_numbers, have_lowercase, have_uppercase,
+                                                        have_ambiguous_characters)
+        print(f"Your password on iteration {i} is: {generated_password}")
+        # generated_password = "PEAR^2CAR07^"
         passwordList['passwords'].append({'id': i, 'password': generated_password})
 
     return json.dumps(passwordList, indent=4)
